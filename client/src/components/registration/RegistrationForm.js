@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import FormError from "../layout/FormError";
-import ErrorList from "../shared/ErrorList";
+import ErrorList from "../layout/ErrorList";
 import translateServerErrors from "../../services/translateServerErrors";
 import config from "../../config";
 
