@@ -13,6 +13,8 @@ const RegistrationForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  const [serverErrors, setServerErrors] = useState({});
+
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const validateInput = (payload) => {
@@ -20,6 +22,13 @@ const RegistrationForm = () => {
     const { email, password, passwordConfirmation } = payload;
     const emailRegexp = config.validation.email.regexp.emailRegexp;
     let newErrors = {};
+
+    if (email.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        email: "is required",
+      };
+    }
 
     if (!email.match(emailRegexp)) {
       newErrors = {
