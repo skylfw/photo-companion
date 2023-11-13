@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router";
-​
+
 const AuthenticationCheck = ({ component: Component, user, ...rest }) => {
   if (user === undefined) {
     return <div>Loading...</div>;
@@ -10,7 +10,7 @@ const AuthenticationCheck = ({ component: Component, user, ...rest }) => {
   }
   return <Redirect to="/user-sessions/new" />;
 };
-​
+
 const AuthenticatedRoute = ({ component, user, ...rest }) => {
   return (
     <Route
@@ -21,5 +21,5 @@ const AuthenticatedRoute = ({ component, user, ...rest }) => {
     </Route>
   );
 };
-​
+
 export default AuthenticatedRoute;

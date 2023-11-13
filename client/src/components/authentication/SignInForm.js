@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import config from "../../config";
 import FormError from "../layout/FormError";
-​
+
 const SignInForm = () => {
   const [userPayload, setUserPayload] = useState({ email: "", password: "" });
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState({});
-​
+
   const validateInput = (payload) => {
     setErrors({});
     const { email, password } = payload;
@@ -18,23 +18,23 @@ const SignInForm = () => {
         email: "is invalid",
       };
     }
-​
+
     if (password.trim() === "") {
       newErrors = {
         ...newErrors,
         password: "is required",
       };
     }
-​
+
     setErrors(newErrors);
-​
+
     if (Object.keys(newErrors).length === 0) {
       return true;
     } else {
       return false;
     }
   };
-​
+
   const onSubmit = async (event) => {
     event.preventDefault();
     if (validateInput(userPayload)) {
@@ -58,18 +58,18 @@ const SignInForm = () => {
       }
     }
   };
-​
+
   const onInputChange = (event) => {
     setUserPayload({
       ...userPayload,
       [event.currentTarget.name]: event.currentTarget.value,
     });
   };
-​
+
   if (shouldRedirect) {
     location.href = "/";
   }
-​
+
   return (
     <div className="grid-container" onSubmit={onSubmit}>
       <h1>Sign In</h1>
@@ -100,5 +100,5 @@ const SignInForm = () => {
     </div>
   );
 };
-​
+
 export default SignInForm;
