@@ -71,32 +71,49 @@ const SignInForm = () => {
   }
 
   return (
-    <div className="grid-container" onSubmit={onSubmit}>
-      <h1>Sign In</h1>
-      <form>
-        <div>
-          <label>
-            Email
-            <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
-            <FormError error={errors.email} />
-          </label>
+    <div className="bg-grey-lighter min-h-screen flex flex-col">
+      <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+        <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+          <h1 className="mb-8 text-3xl text-center">Sign In</h1>
+          <form>
+            <div className="mb-4">
+              <input
+                type="text"
+                className="block border border-grey-light w-full p-3 rounded"
+                name="email"
+                value={userPayload.email}
+                onChange={onInputChange}
+                placeholder="Email"
+              />
+              <FormError error={errors.email} />
+            </div>
+            <div className="mb-4">
+              <input
+                type="password"
+                className="block border border-grey-light w-full p-3 rounded"
+                name="password"
+                value={userPayload.password}
+                onChange={onInputChange}
+                placeholder="Password"
+              />
+              <FormError error={errors.password} />
+            </div>
+            <button
+              onClick={onSubmit}
+              type="submit"
+              className="w-full px-6 py-2 text-white transition duration-500 ease-out bg-blue-700 rounded-lg hover:bg-blue-800 hover:ease-in hover:underline"
+            >
+              Sign In
+            </button>
+          </form>
         </div>
-        <div>
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              value={userPayload.password}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.password} />
-          </label>
+        <div className="text-grey-dark mt-6">
+          Don't have an account?{" "}
+          <a className="no-underline border-b border-blue text-blue" href="../users/new">
+            Sign up
+          </a>
         </div>
-        <div>
-          <input type="submit" className="button" value="Sign In" />
-        </div>
-      </form>
+      </div>
     </div>
   );
 };
