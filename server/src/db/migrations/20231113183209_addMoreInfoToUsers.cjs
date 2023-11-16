@@ -11,10 +11,8 @@ exports.up = async (knex) => {
     table.string("location");
     table.string("expertise");
     table
-      .string("profile_img")
-      .defaultTo(
-        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-      );
+      .string("profileImg")
+      .defaultTo("https://photo-companion-production.s3.amazonaws.com/blank-profile-picture.png");
   });
 };
 

@@ -58,12 +58,6 @@ module.exports = {
             },
           },
           {
-            loader: "postcss-loader",
-            options: {
-              sourceMap: isDevelopment,
-            },
-          },
-          {
             loader: "sass-loader",
             options: {
               sourceMap: isDevelopment,
@@ -77,12 +71,6 @@ module.exports = {
         use: [
           isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
           "css-loader",
-          {
-            loader: "postcss-loader",
-            options: {
-              sourceMap: isDevelopment,
-            },
-          },
           {
             loader: "sass-loader",
             options: {
