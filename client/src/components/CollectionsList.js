@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const CollectionsList = (props) => {
   const [collections, setCollections] = useState([]);
@@ -23,11 +24,15 @@ const CollectionsList = (props) => {
   }, []);
 
   const collectionsListItems = collections.map((collectionItem) => {
-    return <li key={collectionItem.id}>{collectionItem.title}</li>;
+    return (
+      <li className="text-white" key={collectionItem.id}>
+        {collectionItem.title}
+      </li>
+    );
   });
 
   return (
-    <div className="collections-container text-center">
+    <div className="collections-container">
       <ul>{collectionsListItems}</ul>
     </div>
   );

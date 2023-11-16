@@ -71,7 +71,7 @@ const SignInForm = () => {
   }
 
   return (
-    <div className="bg-grey-lighter min-h-screen flex flex-col">
+    <div className="form-background bg-grey-lighter min-h-screen flex flex-col">
       <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
         <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
           <h1 className="mb-8 text-3xl text-center">Sign In</h1>
@@ -101,15 +101,16 @@ const SignInForm = () => {
             <button
               onClick={onSubmit}
               type="submit"
-              className="w-full px-6 py-2 text-white transition duration-500 ease-out bg-blue-700 rounded-lg hover:bg-blue-800 hover:ease-in hover:underline"
+              className="submit-button"
+              //w-full px-6 py-2 text-white transition duration-500 ease-out bg-blue-700 rounded-lg hover:bg-blue-800 hover:ease-in hover:underline
             >
               Sign In
             </button>
           </form>
         </div>
-        <div className="text-grey-dark mt-6">
+        <div className="under-form-text">
           Don't have an account?{" "}
-          <a className="no-underline border-b border-blue text-blue" href="../users/new">
+          <a className="under-form-link" href="../users/new">
             Sign up
           </a>
         </div>

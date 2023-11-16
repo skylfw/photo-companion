@@ -108,7 +108,7 @@ const RegistrationForm = () => {
   }
 
   return (
-    <div className="bg-grey-lighter min-h-screen flex flex-col">
+    <div className="form-background bg-grey-lighter min-h-screen flex flex-col">
       <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
         <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
           <h1 className="mb-8 text-3xl text-center">Sign Up</h1>
@@ -146,18 +146,14 @@ const RegistrationForm = () => {
               />
               <FormError error={errors.passwordConfirmation} />
             </div>
-            <button
-              onClick={onSubmit}
-              type="submit"
-              className="w-full px-6 py-2 text-white transition duration-500 ease-out bg-blue-700 rounded-lg hover:bg-blue-800 hover:ease-in hover:underline"
-            >
+            <button onClick={onSubmit} type="submit" className="submit-button">
               Register
             </button>
           </form>
         </div>
-        <div className="text-grey-dark mt-6">
+        <div className="under-form-text">
           Already have an account?{" "}
-          <a className="no-underline border-b border-blue text-blue" href="../user-sessions/new">
+          <a className="under-form-link" href="../user-sessions/new">
             Log in
           </a>
         </div>
