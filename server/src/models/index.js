@@ -1,4 +1,4 @@
 // include all of your models here using CommonJS requires
-const User = require("./User.js")
-
-module.exports = {User};
+const User = require("./User.js");
+const Collection = require("./Collection.js");
+module.exports = { User, Collection };
