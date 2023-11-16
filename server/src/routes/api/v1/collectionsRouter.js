@@ -13,4 +13,14 @@ collectionsRouter.get("/", async (req, res) => {
   }
 });
 
+collectionsRouter.get("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const collection = await Collection.query().findById(id);
+    return res.status(200).json({ collection });
+  } catch (err) {
+    return res.status(500).json({ errors: err });
+  }
+});
+
 export default collectionsRouter;
