@@ -8,6 +8,10 @@ class UserSeeder {
         username: "sky",
         password: "123",
       },
+      {
+        email: "s@123.com",
+        password: "123",
+      },
     ];
 
     for (const user of usersData) {
