@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { connection } from "../boot.js";
 import CollectionSeeder from "./seeders/CollectionSeeder.js";
+import PhotoSeeder from "./seeders/PhotoSeeder.js";
 import UserSeeder from "./seeders/UserSeeder.js";
 
 class Seeder {
@@ -11,6 +12,9 @@ class Seeder {
 
     console.log("seeding collections...");
     await CollectionSeeder.seed();
+
+    console.log("seeding photos...");
+    await PhotoSeeder.seed();
 
     console.log("Done!");
     await connection.destroy();
