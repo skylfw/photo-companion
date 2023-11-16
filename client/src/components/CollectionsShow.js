@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import getCollection from "../services/getMovie.js";
+import getCollection from "../services/getCollection.js";
 
 const CollectionShow = (props) => {
   const [collection, setCollection] = useState({
@@ -15,7 +15,12 @@ const CollectionShow = (props) => {
     });
   }, []);
 
-  return <>{collection.title}</>;
+  return (
+    <div className="collection-container">
+      {collection.title}
+      <div>{collection.description}</div>
+    </div>
+  );
 };
 
 export default CollectionShow;

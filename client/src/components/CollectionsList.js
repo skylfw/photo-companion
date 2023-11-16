@@ -25,8 +25,8 @@ const CollectionsList = (props) => {
 
   const collectionsListItems = collections.map((collectionItem) => {
     return (
-      <li className="text-white" key={collectionItem.id}>
-        {collectionItem.title}
+      <li key={collectionItem.id}>
+        <Link to={`/collections/${collectionItem.id}`}>{collectionItem.title}</Link>
       </li>
     );
   });
