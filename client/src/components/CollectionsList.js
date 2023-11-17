@@ -25,15 +25,30 @@ const CollectionsList = (props) => {
 
   const collectionsListItems = collections.map((collectionItem) => {
     return (
-      <li className="text-white" key={collectionItem.id}>
-        {collectionItem.title}
-      </li>
+      <div key={collectionItem.id}>
+        <Link to={`/collections/${collectionItem.id}`}>
+          <div className="collection-card">
+            <img
+              className="collection-card"
+              src="https://images.pexels.com/photos/11625522/pexels-photo-11625522.jpeg"
+            />
+            <div className="collection-card-content">
+              <div className="collection-card-title">{collectionItem.title}</div>
+              <p className="collection-card-text">{collectionItem.username}</p>
+              <p className="collection-card-text">{collectionItem.description}</p>
+            </div>
+          </div>
+        </Link>
+        {/* <img src={`${collectionItem.photos[0].imageUrl}`} /> */}
+      </div>
     );
   });
 
+  console.log(collections);
+
   return (
     <div className="collections-container">
-      <ul>{collectionsListItems}</ul>
+      <div className="collections-grid">{collectionsListItems}</div>
     </div>
   );
 };

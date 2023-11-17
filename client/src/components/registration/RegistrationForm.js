@@ -108,15 +108,15 @@ const RegistrationForm = () => {
   }
 
   return (
-    <div className="form-background bg-grey-lighter min-h-screen flex flex-col">
-      <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-        <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-          <h1 className="mb-8 text-3xl text-center">Sign Up</h1>
+    <div className="page-container form-container">
+      <div className="form-item-container">
+        <div className="form-card">
+          <h1 className="form-title">Sign Up</h1>
           <form>
             <div className="mb-4">
               <input
                 type="text"
-                className="block border border-grey-light w-full p-3 rounded"
+                className="input-field"
                 name="email"
                 value={userPayload.email}
                 onChange={onInputChange}
@@ -127,7 +127,7 @@ const RegistrationForm = () => {
             <div className="mb-4">
               <input
                 type="password"
-                className="block border border-grey-light w-full p-3 rounded"
+                className="input-field"
                 name="password"
                 value={userPayload.password}
                 onChange={onInputChange}
@@ -138,7 +138,7 @@ const RegistrationForm = () => {
             <div className="mb-4">
               <input
                 type="password"
-                className="block border border-grey-light w-full p-3 rounded"
+                className="input-field"
                 name="passwordConfirmation"
                 value={userPayload.passwordConfirmation}
                 onChange={onInputChange}

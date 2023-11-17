@@ -23,10 +23,15 @@ const TopBar = ({ user }) => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <div className="navbar-left">
+        <div className="">
           <div className="navbar-left-items">
             {/* <img id="logo" src="https://photo-companion-production.s3.amazonaws.com/logo.png"></img> */}
-            <Link to="/">Photo Companion</Link>
+            <Link className="navbar-home" to="/">
+              Photo Companion
+            </Link>
+            <Link className="navbar-link" to="/collections">
+              Galleries
+            </Link>
           </div>
         </div>
         <ul>{user ? authenticatedListItems : unauthenticatedListItems}</ul>
