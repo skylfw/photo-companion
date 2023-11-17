@@ -27,9 +27,12 @@ const CollectionsList = (props) => {
     return (
       <li key={collectionItem.id}>
         <Link to={`/collections/${collectionItem.id}`}>{collectionItem.title}</Link>
+        {/* <img src={`${collectionItem.photos[0].imageUrl}`} /> */}
       </li>
     );
   });
+
+  console.log(collections);
 
   return (
     <div className="collections-container">

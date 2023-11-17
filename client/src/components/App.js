@@ -10,6 +10,7 @@ import TopBar from "./layout/TopBar";
 import CollectionsList from "./CollectionsList";
 import CollectionForm from "./CollectionForm";
 import CollectionsShow from "./CollectionsShow";
+import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -44,7 +45,13 @@ const App = (props) => {
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
-        <Route exact path="/collections/new" component={CollectionForm} />
+        <AuthenticatedRoute
+          exact={true}
+          path="/collections/new"
+          component={CollectionForm}
+          user={currentUser}
+          setCurrentUser={setCurrentUser}
+        />
         <Route exact path="/collections" component={CollectionsList} />
         <Route exact path="/collections/:id" component={CollectionsShow} />
       </Switch>

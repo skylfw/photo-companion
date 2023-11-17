@@ -29,7 +29,7 @@ class Photo extends Model {
         },
       },
       collection: {
-        relation: Model.ManyToManyRelation,
+        relation: Model.BelongsToOneRelation,
         modelClass: Collection,
         join: {
           from: "photos.collectionId",

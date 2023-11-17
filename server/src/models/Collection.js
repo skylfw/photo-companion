@@ -17,7 +17,7 @@ class Collection extends Model {
   }
 
   static get relationMappings() {
-    const { User } = require("./index.js");
+    const { User, Photo } = require("./index.js");
 
     return {
       user: {
@@ -26,6 +26,14 @@ class Collection extends Model {
         join: {
           from: "collections.userId",
           to: "users.id",
+        },
+      },
+      photos: {
+        relation: Model.HasManyRelation,
+        modelClass: Photo,
+        join: {
+          from: "collections.id",
+          to: "photos.collectionId",
         },
       },
     };

@@ -6,8 +6,8 @@ const collectionsRouter = new express.Router();
 
 collectionsRouter.get("/", async (req, res) => {
   try {
-    const collections = await Collection.query();
-    res.status(200).json({ collections: collections });
+    const collections = await Collection.query().withGraphFetched("photos");
+    res.status(200).json({ collections });
   } catch (error) {
     console.log(error);
     return res.status(422).json({ errors: error });
@@ -18,6 +18,7 @@ collectionsRouter.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const collection = await Collection.query().findById(id);
+    collection.photos = await collection.$relatedQuery("photos");
     return res.status(200).json({ collection });
   } catch (err) {
     return res.status(500).json({ errors: err });
@@ -34,7 +35,6 @@ collectionsRouter.post("/", async (req, res) => {
       title,
       description,
     });
-    console.log(newCollection);
     return res.status(201).json({ newCollection });
   } catch (error) {
     if (error instanceof ValidationError) {

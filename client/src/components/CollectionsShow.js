@@ -5,6 +5,7 @@ const CollectionShow = (props) => {
   const [collection, setCollection] = useState({
     title: "",
     description: "",
+    photos: [],
   });
 
   const collectionId = props.match.params.id;
@@ -15,10 +16,20 @@ const CollectionShow = (props) => {
     });
   }, []);
 
+  const list = collection.photos.map((img) => {
+    return (
+      <div key={img.id}>
+        <img className="gallery-img" src={`${img.imageUrl}`}></img>
+      </div>
+    );
+  });
+
+  // console.log(collection.imgUrls);
   return (
     <div className="collection-container">
       {collection.title}
       <div>{collection.description}</div>
+      <div>{list}</div>
     </div>
   );
 };
