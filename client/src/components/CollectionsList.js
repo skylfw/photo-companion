@@ -34,6 +34,7 @@ const CollectionsList = (props) => {
             />
             <div className="collection-card-content">
               <div className="collection-card-title">{collectionItem.title}</div>
+              <p className="collection-card-text">{collectionItem.username}</p>
               <p className="collection-card-text">{collectionItem.description}</p>
             </div>
           </div>

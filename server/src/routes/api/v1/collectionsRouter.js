@@ -2,12 +2,15 @@ import express from "express";
 import { Collection } from "../../../models/index.js";
 import { ValidationError } from "objection";
 import cleanUserInput from "../../../services/cleanUserInput.js";
+import CollectionSerializer from "../../../serializers/CollectionSerializer.js";
+
 const collectionsRouter = new express.Router();
 
 collectionsRouter.get("/", async (req, res) => {
   try {
-    const collections = await Collection.query().withGraphFetched("photos");
-    res.status(200).json({ collections });
+    const collections = await Collection.query().withGraphFetched("[photos, user]");
+    const serializedCollections = await CollectionSerializer.getSummary(collections);
+    return res.status(200).json({ collections: serializedCollections });
   } catch (error) {
     console.log(error);
     return res.status(422).json({ errors: error });
@@ -17,9 +20,9 @@ collectionsRouter.get("/", async (req, res) => {
 collectionsRouter.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const collection = await Collection.query().findById(id);
-    collection.photos = await collection.$relatedQuery("photos");
-    return res.status(200).json({ collection });
+    const collection = await Collection.query().findById(id).withGraphFetched("[photos, user]");
+    const serializedCollection = await CollectionSerializer.getDetails(collection);
+    return res.status(200).json({ collection: serializedCollection });
   } catch (err) {
     return res.status(500).json({ errors: err });
   }

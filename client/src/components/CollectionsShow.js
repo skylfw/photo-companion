@@ -24,7 +24,6 @@ const CollectionShow = (props) => {
     );
   });
 
-  // console.log(collection.imgUrls);
   return (
     <div className="collection-container">
       {collection.title}
