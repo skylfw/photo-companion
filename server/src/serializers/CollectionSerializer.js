@@ -2,7 +2,7 @@ import PhotoSerializer from "./PhotoSerializer.js";
 
 class CollectionSerializer {
   static async getSummary(collections) {
-    const allowedAttributes = ["id", "title", "description", "username", "photos"];
+    const allowedAttributes = ["id", "title", "description", "username", "photos", "coverImage"];
 
     const collectionsWithUsernames = collections.map((collection) => {
       const username = collection.user ? collection.user.username : null;
@@ -31,7 +31,7 @@ class CollectionSerializer {
   }
 
   static async getDetails(collection) {
-    const allowedAttributes = ["id", "title", "description", "photos", "username"];
+    const allowedAttributes = ["id", "title", "description", "photos", "username", "coverImage"];
     const username = collection.user ? collection.user.username : null;
     let serializedCollection = {};
 

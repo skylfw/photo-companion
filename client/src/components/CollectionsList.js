@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const CollectionsList = (props) => {
   const [collections, setCollections] = useState([]);
+  const [coverImage, setCoverImage] = useState(null);
 
   const getCollections = async () => {
     try {
@@ -28,10 +29,7 @@ const CollectionsList = (props) => {
       <div key={collectionItem.id}>
         <Link to={`/collections/${collectionItem.id}`}>
           <div className="collection-card">
-            <img
-              className="collection-card"
-              src="https://images.pexels.com/photos/11625522/pexels-photo-11625522.jpeg"
-            />
+            <img className="collection-card" src={`${collectionItem.coverImage}`} />
             <div className="collection-card-content">
               <div className="collection-card-title">{collectionItem.title}</div>
               <p className="collection-card-text">{collectionItem.username}</p>
