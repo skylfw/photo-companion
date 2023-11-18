@@ -7,7 +7,7 @@
  */
 exports.up = async (knex) => {
   return knex.schema.table("users", (table) => {
-    table.string("username");
+    table.string("username").notNullable().unique();
     table.string("location");
     table.string("expertise");
     table

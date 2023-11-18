@@ -7,10 +7,14 @@ class UserSeeder {
         email: "sky@launch.com",
         username: "sky",
         password: "123",
+        location: "Boston, MA",
       },
       {
         email: "s@123.com",
+        username: "s",
         password: "123",
+        location: "Boston, MA",
+        expertise: "portraits",
       },
     ];
 
