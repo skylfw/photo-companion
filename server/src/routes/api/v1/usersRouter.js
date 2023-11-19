@@ -10,7 +10,6 @@ usersRouter.get("/", async (req, res) => {
     const users = await User.query();
     return res.status(200).json({ users });
   } catch (error) {
-    console.log(error);
     return res.status(422).json({ errors: error });
   }
 });
@@ -34,7 +33,6 @@ usersRouter.post("/", async (req, res) => {
       return res.status(201).json({ user: persistedUser });
     });
   } catch (error) {
-    console.log(error);
     return res.status(422).json({ errors: error });
   }
 });

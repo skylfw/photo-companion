@@ -12,7 +12,6 @@ collectionsRouter.get("/", async (req, res) => {
     const serializedCollections = await CollectionSerializer.getSummary(collections);
     return res.status(200).json({ collections: serializedCollections });
   } catch (error) {
-    console.log(error);
     return res.status(422).json({ errors: error });
   }
 });
@@ -46,4 +45,5 @@ collectionsRouter.post("/", async (req, res) => {
     return res.status(500).json({ errors: error });
   }
 });
+
 export default collectionsRouter;

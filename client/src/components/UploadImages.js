@@ -12,10 +12,12 @@ const UploadImages = (props) => {
   const handleClick = async (event) => {
     event.preventDefault();
     const files = fileInput.current.files;
-
+    const imgFiles = [];
     for (let i = 0; i < files.length; i++) {
+      imgFiles.push("https://photo-companion-production.s3.amazonaws.com/".concat(files[i].name));
       await handleUpload(files[i]);
     }
+    props.setImageFiles(imgFiles);
   };
 
   const handleUpload = async (file) => {

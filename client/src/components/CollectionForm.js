@@ -7,10 +7,38 @@ import UploadImages from "./UploadImages";
 const CollectionForm = (props) => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [imageFiles, setImageFiles] = useState([]);
   const [newCollection, setNewCollection] = useState({
     title: "",
     description: "",
   });
+
+  const postPhotos = async (newPhotoData) => {
+    try {
+      const response = await fetch(`/api/v1/photos`, {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(newPhotoData),
+      });
+      if (!response.ok) {
+        if (response.status === 422) {
+          const errorBody = await response.json();
+          const newErrors = translateServerErrors(errorBody.errors);
+          return setErrors(newErrors);
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`;
+          const error = new Error(errorMessage);
+          throw error;
+        }
+      } else {
+        setShouldRedirect(true);
+      }
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
+  };
 
   const postCollection = async (newCollectionData) => {
     try {
@@ -32,6 +60,15 @@ const CollectionForm = (props) => {
           throw error;
         }
       } else {
+        const { newCollection } = await response.json();
+        imageFiles.forEach((image) => {
+          return postPhotos({
+            userId: props.user.id,
+            collectionId: newCollection.id,
+            imageUrl: image,
+            description: "",
+          });
+        });
         setShouldRedirect(true);
       }
     } catch (error) {
@@ -78,7 +115,7 @@ const CollectionForm = (props) => {
             value={newCollection.description}
           />
         </label>
-        <UploadImages></UploadImages>
+        <UploadImages imageFiles={imageFiles} setImageFiles={setImageFiles} />
         <input className="submit-button landing-button" type="submit" value="Submit" />
       </form>
     </div>
