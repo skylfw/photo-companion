@@ -1,6 +1,6 @@
 class PhotoSerializer {
   static async cleanPhoto(photo) {
-    const allowedAttributes = ["imageUrl", "description"];
+    const allowedAttributes = ["id", "imageUrl", "description"];
 
     const serializedPhoto = {};
     for (const attribute of allowedAttributes) {

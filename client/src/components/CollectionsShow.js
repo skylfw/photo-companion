@@ -5,6 +5,7 @@ const CollectionShow = (props) => {
   const [collection, setCollection] = useState({
     title: "",
     description: "",
+    coverImage: "",
     photos: [],
   });
 
@@ -25,7 +26,7 @@ const CollectionShow = (props) => {
   });
 
   return (
-    <div className="collection-container">
+    <div className="page-container">
       {collection.title}
       <div>{collection.description}</div>
       <div>{list}</div>
