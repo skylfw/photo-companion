@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import ErrorList from "./layout/ErrorList";
 import translateServerErrors from "../services/translateServerErrors";
+import UploadImages from "./UploadImages";
 
 const CollectionForm = (props) => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
@@ -77,6 +78,7 @@ const CollectionForm = (props) => {
             value={newCollection.description}
           />
         </label>
+        <UploadImages></UploadImages>
         <input className="submit-button landing-button" type="submit" value="Submit" />
       </form>
     </div>

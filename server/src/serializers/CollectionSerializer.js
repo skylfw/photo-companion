@@ -31,7 +31,15 @@ class CollectionSerializer {
   }
 
   static async getDetails(collection) {
-    const allowedAttributes = ["id", "title", "description", "photos", "username", "coverImage"];
+    const allowedAttributes = [
+      "id",
+      "title",
+      "description",
+      "photos",
+      "username",
+      "coverImage",
+      "userId",
+    ];
     const username = collection.user ? collection.user.username : null;
     let serializedCollection = {};
 

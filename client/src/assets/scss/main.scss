@@ -248,3 +248,23 @@ body {
   margin-left: 1rem;
   color: black;
 }
+
+.navbar-right {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-pic {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border: solid 2px black;
+}
+
+.drag-n-drop {
+  text-align: center;
+  width: 50%;
+  height: 5rem;
+  background-color: lightgrey;
+  border-radius: 5px;
+}

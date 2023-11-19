@@ -15,9 +15,15 @@ const TopBar = ({ user }) => {
   ];
 
   const authenticatedListItems = [
-    <li key="sign-out">
+    <div key="profile">
+      <Link to="/profile">Your Profile</Link>
+    </div>,
+    <div key="add-collection">
+      <Link to="/collections/new">Add New Collections</Link>
+    </div>,
+    <div key="sign-out">
       <SignOutButton />
-    </li>,
+    </div>,
   ];
 
   return (
@@ -32,9 +38,14 @@ const TopBar = ({ user }) => {
             <Link className="navbar-link" to="/collections">
               Galleries
             </Link>
+            <Link className="navbar-link" to="/users">
+              Users
+            </Link>
           </div>
         </div>
-        <ul>{user ? authenticatedListItems : unauthenticatedListItems}</ul>
+        <div className="navbar-right">
+          {user ? authenticatedListItems : unauthenticatedListItems}
+        </div>
       </div>
     </nav>
   );

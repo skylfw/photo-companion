@@ -47,6 +47,7 @@ const App = (props) => {
           </div>
         </Route>
         <Route exact path="/users" component={UsersList} />
+        <Route exact path="/users/:id" component={ProfileShow} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <AuthenticatedRoute

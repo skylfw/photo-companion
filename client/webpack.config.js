@@ -1,5 +1,8 @@
 const path = require("path");
 const webpack = require("webpack");
+const dotenv = require("dotenv");
+
+const env = dotenv.config().parsed;
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -30,6 +33,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Engage",
       template: path.join(__dirname, "public/index.template.html"),
+    }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(env),
     }),
   ],
   module: {

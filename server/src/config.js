@@ -3,9 +3,9 @@ import getNodeEnv from "./config/getNodeEnv.js";
 import getDatabaseUrl from "./config/getDatabaseUrl.cjs";
 
 const development = {
-  awsAccess: { key: process.env.AWS_ACCESS_KEY_ID },
-  awsSecret: { key: process.env.AWS_SECRET_ACCESS_KEY },
-  s3Bucket: { name: process.env.S3_BUCKET_PRODUCTION },
+  awsAccess: { key: process.env.REACT_APP_AWS_ACCESS_KEY_ID },
+  awsSecret: { key: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY },
+  s3Bucket: { name: process.env.REACT_APP_S3_BUCKET_PRODUCTION },
   databaseUrl: getDatabaseUrl(getNodeEnv()),
   nodeEnv: getNodeEnv(),
   session: { secret: process.env.SESSION_SECRET },
@@ -16,7 +16,7 @@ const test = { ...development };
 
 const production = {
   ...development,
-  s3Bucket: { name: process.env.S3_BUCKET_PRODUCTION },
+  s3Bucket: { name: process.env.REACT_APP_S3_BUCKET_PRODUCTION },
 };
 
 const config = { development, test, production };

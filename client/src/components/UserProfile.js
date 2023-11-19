@@ -8,6 +8,8 @@ const UserProfile = (props) => {
     profileImg: {},
   });
 
+  // const [profileImage, setProfileImage] = useState(props.user.profileImg);
+
   const handleImageUpload = (acceptedImage) => {
     setImageData({
       ...imageData,
@@ -42,7 +44,7 @@ const UserProfile = (props) => {
             </section>
           )}
         </Dropzone>
-        <input className="submit-pic-button" type="submit"></input>
+        <input className="submit-button" type="submit"></input>
       </form>
       <h3>{props.user.username}</h3>
       <p>{props.user.email}</p>

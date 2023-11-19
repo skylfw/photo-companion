@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import getCollection from "../services/getCollection.js";
+import { Link } from "react-router-dom";
 
 const CollectionShow = (props) => {
   const [collection, setCollection] = useState({
@@ -28,6 +29,9 @@ const CollectionShow = (props) => {
   return (
     <div className="page-container">
       {collection.title}
+      <div>
+        <Link to={`/users/${collection.userId}`}>{collection.username}</Link>
+      </div>
       <div>{collection.description}</div>
       <div>{list}</div>
     </div>
