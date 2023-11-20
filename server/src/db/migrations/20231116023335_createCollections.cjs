@@ -11,6 +11,9 @@ exports.up = async (knex) => {
     table.bigInteger("userId").notNullable().unsigned().index().references("users.id");
     table.string("title").notNullable().defaultTo("Untitled");
     table.string("description");
+    table
+      .string("coverImage")
+      .defaultTo("https://photo-companion-production.s3.amazonaws.com/No_Cover.jpg");
     table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
     table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
   });

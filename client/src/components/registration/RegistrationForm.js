@@ -7,6 +7,7 @@ import config from "../../config";
 const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
     email: "",
+    username: "",
     password: "",
     passwordConfirmation: "",
   });
@@ -19,7 +20,7 @@ const RegistrationForm = () => {
 
   const validateInput = (payload) => {
     setErrors({});
-    const { email, password, passwordConfirmation } = payload;
+    const { email, username, password, passwordConfirmation } = payload;
     const emailRegexp = config.validation.email.regexp.emailRegexp;
     let newErrors = {};
 
@@ -34,6 +35,13 @@ const RegistrationForm = () => {
       newErrors = {
         ...newErrors,
         email: "is invalid",
+      };
+    }
+
+    if (username.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        username: "is required",
       };
     }
 
@@ -80,7 +88,7 @@ const RegistrationForm = () => {
           if (!response.ok) {
             if (response.status === 422) {
               const body = await response.json();
-              const newServerErrors = translateServerErrors(body.errors);
+              const newServerErrors = translateServerErrors(body.errors.data);
               return setServerErrors(newServerErrors);
             }
             const errorMessage = `${response.status} (${response.statusText})`;
@@ -88,6 +96,7 @@ const RegistrationForm = () => {
             throw error;
           }
           const userData = await response.json();
+          console.log(userData);
           setShouldRedirect(true);
         }
       } catch (err) {
@@ -112,7 +121,8 @@ const RegistrationForm = () => {
       <div className="form-item-container">
         <div className="form-card">
           <h1 className="form-title">Sign Up</h1>
-          <form>
+          <form onSubmit={onSubmit}>
+            <ErrorList errors={serverErrors} />
             <div className="mb-4">
               <input
                 type="text"
@@ -123,6 +133,17 @@ const RegistrationForm = () => {
                 placeholder="Email"
               />
               <FormError error={errors.email} />
+            </div>
+            <div className="mb-4">
+              <input
+                type="text"
+                className="input-field"
+                name="username"
+                value={userPayload.username}
+                onChange={onInputChange}
+                placeholder="Username"
+              />
+              <FormError error={errors.username} />
             </div>
             <div className="mb-4">
               <input
@@ -146,7 +167,7 @@ const RegistrationForm = () => {
               />
               <FormError error={errors.passwordConfirmation} />
             </div>
-            <button onClick={onSubmit} type="submit" className="submit-button">
+            <button type="submit" className="submit-button">
               Register
             </button>
           </form>

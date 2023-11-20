@@ -7,17 +7,16 @@
     "e2e"
   ],
   "scripts": {
-    "build:client": "yarn workspace photo-companion-client build",
-    "dev": "yarn workspace photo-companion-server dev",
-    "dev:debug": "yarn workspace photo-companion-server dev:debug",
-    "heroku-postbuild": "yarn workspace photo-companion-client build",
-    "start": "yarn workspace photo-companion-server start",
-    "dev:cypress": "yarn workspace photo-companion-server dev:e2e",
-    "e2e:open": "yarn workspace photo-companion-e2e e2e:open",
-    "e2e:run": "yarn workspace photo-companion-e2e e2e:run"
+    "build:client": "yarn workspace light-spar-client build",
+    "dev": "yarn workspace light-spar-server dev",
+    "dev:debug": "yarn workspace light-spar-server dev:debug",
+    "heroku-postbuild": "yarn workspace light-spar-client build",
+    "start": "yarn workspace light-spar-server start",
+    "dev:cypress": "yarn workspace light-spar-server dev:e2e",
+    "e2e:open": "yarn workspace light-spar-e2e e2e:open",
+    "e2e:run": "yarn workspace light-spar-e2e e2e:run"
   },
   "engines": {
     "node": "^16.18"
-  },
-  "dependencies": {}
+  }
 }

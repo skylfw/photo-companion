@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import CollectionTile from "./CollectionTle";
 
 const CollectionsList = (props) => {
   const [collections, setCollections] = useState([]);
+  const [coverImage, setCoverImage] = useState(null);
 
   const getCollections = async () => {
     try {
@@ -24,31 +26,16 @@ const CollectionsList = (props) => {
   }, []);
 
   const collectionsListItems = collections.map((collectionItem) => {
-    return (
-      <div key={collectionItem.id}>
-        <Link to={`/collections/${collectionItem.id}`}>
-          <div className="collection-card">
-            <img
-              className="collection-card"
-              src="https://images.pexels.com/photos/11625522/pexels-photo-11625522.jpeg"
-            />
-            <div className="collection-card-content">
-              <div className="collection-card-title">{collectionItem.title}</div>
-              <p className="collection-card-text">{collectionItem.username}</p>
-              <p className="collection-card-text">{collectionItem.description}</p>
-            </div>
-          </div>
-        </Link>
-        {/* <img src={`${collectionItem.photos[0].imageUrl}`} /> */}
-      </div>
-    );
+    return <CollectionTile key={collectionItem.id} collection={collectionItem}></CollectionTile>;
   });
 
   console.log(collections);
 
   return (
-    <div className="collections-container">
-      <div className="collections-grid">{collectionsListItems}</div>
+    <div className="page-container">
+      <div className="collections-container">
+        <div className="collections-grid">{collectionsListItems}</div>
+      </div>
     </div>
   );
 };
