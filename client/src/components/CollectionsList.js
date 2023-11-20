@@ -33,7 +33,9 @@ const CollectionsList = (props) => {
 
   return (
     <div className="page-container">
-      <div className="collections-grid">{collectionsListItems}</div>
+      <div className="collections-container">
+        <div className="collections-grid">{collectionsListItems}</div>
+      </div>
     </div>
   );
 };
