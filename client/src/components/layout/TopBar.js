@@ -15,6 +15,9 @@ const TopBar = ({ user }) => {
   ];
 
   const authenticatedListItems = [
+    <div key="addCollection">
+      <Link to="/collections/new">Add Collection</Link>
+    </div>,
     <div key="profile">
       <Link to="/profile">Profiles</Link>
     </div>,
