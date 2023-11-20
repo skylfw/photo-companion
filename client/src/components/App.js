@@ -12,7 +12,6 @@ import CollectionForm from "./CollectionForm";
 import CollectionsShow from "./CollectionsShow";
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
 import UsersList from "./UsersList";
-import ProfileShow from "./ProfileShow";
 import UserProfile from "./UserProfile";
 
 const App = (props) => {
@@ -46,7 +45,13 @@ const App = (props) => {
             <button className="submit-button landing-button">Sign Up</button>
           </div>
         </Route>
-        <Route exact path="/users" component={UsersList} />
+        <AuthenticatedRoute
+          exact={true}
+          path="/users"
+          component={UsersList}
+          user={currentUser}
+          setCurrentUser={setCurrentUser}
+        />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <AuthenticatedRoute
