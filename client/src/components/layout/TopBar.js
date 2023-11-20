@@ -35,6 +35,9 @@ const TopBar = ({ user }) => {
             <Link className="navbar-link" to="/collections">
               Galleries
             </Link>
+            <Link className="navbar-link" to="/users">
+              Photographers
+            </Link>
           </div>
         </div>
         <div className="navbar-right">
