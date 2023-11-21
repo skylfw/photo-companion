@@ -41,7 +41,7 @@ const App = (props) => {
             />
           </div>
           <div className="landing-container">
-            <h1 className="landing-page-text text-5xl text-white">Hello</h1>
+            <h1 className="landing-page-text">Hello</h1>
             <button className="submit-button landing-button">Sign Up</button>
           </div>
         </Route>
