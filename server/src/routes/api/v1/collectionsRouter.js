@@ -59,4 +59,37 @@ collectionsRouter.post("/", uploadImage.array("images"), async (req, res) => {
   }
 });
 
+collectionsRouter.delete("/:id", async (req, res) => {
+  const userId = req.user.id;
+  const collectionId = req.params.id;
+
+  try {
+    const collection = await Collection.query().findById(collectionId);
+
+    if (!collection) {
+      return res.status(404).json({ error: "Collection not found" });
+    }
+
+    const collectionUserId = collection.userId;
+
+    if (userId === collectionUserId) {
+      await Photo.query().delete().where("collectionId", collectionId);
+
+      const deletedRows = await Collection.query().deleteById(collectionId);
+      console.log("Deleted rows:", deletedRows);
+
+      if (deletedRows > 0) {
+        return res.status(200).json({ success: true });
+      } else {
+        return res.status(404).json({ error: "Collection not found" });
+      }
+    } else {
+      return res.status(401).json({ error: "Not authorized to delete collection" });
+    }
+  } catch (error) {
+    console.error("Error deleting collection:", error);
+    return res.status(500).json({ error: "Internal Server Error", details: error.message });
+  }
+});
+
 export default collectionsRouter;

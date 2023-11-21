@@ -19,7 +19,7 @@ const TopBar = ({ user }) => {
       <Link to="/collections/new">Add Collection</Link>
     </div>,
     <div key="profile">
-      <Link to="/profile">Profiles</Link>
+      <Link to="/profile">Profile</Link>
     </div>,
     <div key="sign-out">
       <SignOutButton />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { hot } from "react-hot-loader/root";
 
 import getCurrentUser from "../services/getCurrentUser";
@@ -21,6 +21,7 @@ const App = (props) => {
       const user = await getCurrentUser();
       setCurrentUser(user);
     } catch (err) {
+      console.log(err);
       setCurrentUser(null);
     }
   };
@@ -54,12 +55,28 @@ const App = (props) => {
         />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
-        <AuthenticatedRoute
-          exact={true}
+        {/* <AuthenticatedRoute
+          exact
           path="/profile"
-          component={UserProfile}
-          user={currentUser}
-          setCurrentUser={setCurrentUser}
+          render={(props) => {
+            return <UserProfile user={currentUser} setCurrentUser={setCurrentUser} {...props} />;
+          }}
+        /> */}
+        <Route
+          exact
+          path="/profile"
+          render={(props) => {
+            if (currentUser) {
+              return <UserProfile user={currentUser} setCurrentUser={setCurrentUser} {...props} />;
+            }
+          }}
+        />
+        <Route
+          exact
+          path="/collections"
+          render={(props) => {
+            return <CollectionsList user={currentUser} {...props} />;
+          }}
         />
         <AuthenticatedRoute
           exact={true}
@@ -68,7 +85,6 @@ const App = (props) => {
           user={currentUser}
           setCurrentUser={setCurrentUser}
         />
-        <Route exact path="/collections" component={CollectionsList} />
         <Route exact path="/collections/:id" component={CollectionsShow} />
       </Switch>
     </Router>
