@@ -27,7 +27,7 @@ const CollectionShow = (props) => {
 
   return (
     <div className="page-container">
-      {collection.title}
+      <h1>{collection.title}</h1>
       <div>{collection.description}</div>
       <div>{list}</div>
     </div>

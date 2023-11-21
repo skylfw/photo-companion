@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import CollectionTile from "./CollectionTle";
 
 const CollectionsList = (props) => {
   const [collections, setCollections] = useState([]);
-  const [coverImage, setCoverImage] = useState(null);
 
   const getCollections = async () => {
     try {
@@ -25,8 +23,21 @@ const CollectionsList = (props) => {
     getCollections();
   }, []);
 
+  const handleCollectionDelete = (deletedCollectionId) => {
+    setCollections((prevCollections) =>
+      prevCollections.filter((collection) => collection.id !== deletedCollectionId)
+    );
+  };
+
   const collectionsListItems = collections.map((collectionItem) => {
-    return <CollectionTile key={collectionItem.id} collection={collectionItem}></CollectionTile>;
+    return (
+      <CollectionTile
+        key={collectionItem.id}
+        collection={collectionItem}
+        onDelete={handleCollectionDelete}
+        currentUser={props.user}
+      ></CollectionTile>
+    );
   });
 
   return (
