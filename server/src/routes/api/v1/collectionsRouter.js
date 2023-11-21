@@ -1,8 +1,9 @@
 import express from "express";
-import { Collection } from "../../../models/index.js";
+import { Collection, Photo } from "../../../models/index.js";
 import { ValidationError } from "objection";
 import cleanUserInput from "../../../services/cleanUserInput.js";
 import CollectionSerializer from "../../../serializers/CollectionSerializer.js";
+import uploadImage from "../../../services/uploadImage.js";
 
 const collectionsRouter = new express.Router();
 
@@ -28,16 +29,27 @@ collectionsRouter.get("/:id", async (req, res) => {
   }
 });
 
-collectionsRouter.post("/", async (req, res) => {
-  const { body } = req;
+collectionsRouter.post("/", uploadImage.array("images"), async (req, res) => {
+  const { body, files } = req;
   const formInput = cleanUserInput(body);
   const { title, description } = formInput;
+
   try {
     const newCollection = await Collection.query().insertAndFetch({
       userId: req.user.id,
       title,
       description,
+      coverImage: files[0].location,
     });
+
+    files.forEach(async (file) => {
+      await Photo.query().insert({
+        userId: req.user.id,
+        collectionId: newCollection.id,
+        imageUrl: file.location,
+      });
+    });
+
     return res.status(201).json({ newCollection });
   } catch (error) {
     if (error instanceof ValidationError) {
@@ -46,4 +58,5 @@ collectionsRouter.post("/", async (req, res) => {
     return res.status(500).json({ errors: error });
   }
 });
+
 export default collectionsRouter;

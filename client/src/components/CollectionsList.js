@@ -29,8 +29,6 @@ const CollectionsList = (props) => {
     return <CollectionTile key={collectionItem.id} collection={collectionItem}></CollectionTile>;
   });
 
-  console.log(collections);
-
   return (
     <div className="page-container">
       <div className="collections-container">
