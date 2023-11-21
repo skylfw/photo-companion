@@ -15,7 +15,7 @@ const CollectionTile = ({ collection, onDelete, currentUser }) => {
   };
 
   let deleteButton;
-  if (currentUser && currentUser.username === collection.username) {
+  if (currentUser && currentUser.id === collection.userId) {
     deleteButton = (
       <button className="delete-button submit-button" onClick={handleDelete}>
         Delete
