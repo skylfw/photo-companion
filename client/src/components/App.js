@@ -13,6 +13,7 @@ import CollectionsShow from "./CollectionsShow";
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
 import UsersList from "./UsersList";
 import UserProfile from "./UserProfile";
+import ProfileShow from "./ProfileShow";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -34,15 +35,24 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
+        <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/">
-          <div style={{ backgroundColor: "black", height: "100vh", overflow: "hidden" }}>
+          <div
+            style={{
+              backgroundColor: "black",
+              height: "100vh",
+              overflow: "hidden",
+            }}
+          >
             <img
               className="landing-page-img"
               src="https://images.unsplash.com/photo-1683009427513-28e163402d16?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
           </div>
           <div className="landing-container">
-            <h1 className="landing-page-text">Hello</h1>
+            <h1 className="landing-page-text">
+              Welcome to Photo Companion! Let us help you locate local photographers.
+            </h1>
             <button className="submit-button landing-button">Sign Up</button>
           </div>
         </Route>
@@ -53,15 +63,15 @@ const App = (props) => {
           user={currentUser}
           setCurrentUser={setCurrentUser}
         />
-        <Route exact path="/users/new" component={RegistrationForm} />
+        <AuthenticatedRoute
+          exact={true}
+          path="/users/:id"
+          component={ProfileShow}
+          user={currentUser}
+          setCurrentUser={setCurrentUser}
+        />
+
         <Route exact path="/user-sessions/new" component={SignInForm} />
-        {/* <AuthenticatedRoute
-          exact
-          path="/profile"
-          render={(props) => {
-            return <UserProfile user={currentUser} setCurrentUser={setCurrentUser} {...props} />;
-          }}
-        /> */}
         <Route
           exact
           path="/profile"

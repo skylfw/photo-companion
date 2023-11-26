@@ -9,6 +9,7 @@ const RegistrationForm = () => {
     email: "",
     username: "",
     password: "",
+    location: "",
     passwordConfirmation: "",
   });
 
@@ -20,7 +21,7 @@ const RegistrationForm = () => {
 
   const validateInput = (payload) => {
     setErrors({});
-    const { email, username, password, passwordConfirmation } = payload;
+    const { email, username, password, passwordConfirmation, location } = payload;
     const emailRegexp = config.validation.email.regexp.emailRegexp;
     let newErrors = {};
 
@@ -28,6 +29,13 @@ const RegistrationForm = () => {
       newErrors = {
         ...newErrors,
         email: "is required",
+      };
+    }
+
+    if (location.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        location: "is required",
       };
     }
 
@@ -117,7 +125,7 @@ const RegistrationForm = () => {
   }
 
   return (
-    <div className="page-container form-container">
+    <div className="form-container">
       <div className="form-item-container">
         <div className="form-card">
           <h1 className="form-title">Sign Up</h1>
@@ -144,6 +152,17 @@ const RegistrationForm = () => {
                 placeholder="Username"
               />
               <FormError error={errors.username} />
+            </div>
+            <div className="mb-4">
+              <input
+                type="text"
+                className="input-field"
+                name="location"
+                value={userPayload.location}
+                onChange={onInputChange}
+                placeholder="Location"
+              />
+              <FormError error={errors.location} />
             </div>
             <div className="mb-4">
               <input

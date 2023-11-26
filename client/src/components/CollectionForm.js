@@ -63,36 +63,45 @@ const CollectionForm = (props) => {
   };
 
   return (
-    <div className="page-container">
-      <form onSubmit={handleSubmit}>
-        <h2>Add a New Collection</h2>
-        <ErrorList errors={errors} />
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            onChange={handleInputChange}
-            value={newCollection.title}
-          />
-        </label>
-        <label>
-          Description:
-          <input
-            type="text"
-            name="description"
-            onChange={handleInputChange}
-            value={newCollection.description}
-          />
-        </label>
-        <input
-          type="file"
-          multiple
-          accept="image/jpeg, image/png, image/jpg"
-          onChange={handleFileChange}
-        />
-        <input className="submit-button landing-button" type="submit" value="Submit" />
-      </form>
+    <div className="flex items-center justify-center h-screen">
+      <div className=" bg-white p-5 max-w-lg rounded-lg">
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
+          <div className="m-7">
+            <h2 className="text-center text-2xl mb-5">Add a New Collection</h2>
+            <ErrorList errors={errors} />
+            <div class="mb-5">
+              <label className="block mb-2 text-md font-medium text-gray-900 dark:text-white">
+                <input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  "
+                  type="text"
+                  name="title"
+                  onChange={handleInputChange}
+                  value={newCollection.title}
+                  placeholder="Title"
+                />
+              </label>
+            </div>
+            <label className="block mb-2 text-md font-medium text-gray-900 dark:text-white">
+              <input
+                className="mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                type="text"
+                name="description"
+                onChange={handleInputChange}
+                value={newCollection.description}
+                placeholder="Description"
+              />
+            </label>
+            <input
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+              type="file"
+              multiple
+              accept="image/jpeg, image/png, image/jpg"
+              onChange={handleFileChange}
+            />
+            <input className="submit-button mt-3" type="submit" value="Submit" />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
