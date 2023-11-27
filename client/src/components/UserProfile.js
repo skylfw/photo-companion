@@ -1,5 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import getProfileImage from "../services/getProfileImage";
+import updateProfileLocation from "../services/updateProfileLocation";
+import CollectionTile from "./CollectionTle";
+import getProfileCollections from "../services/getProfileCollections";
 
 const UserProfile = (props) => {
   const [imageData, setImageData] = useState({
@@ -8,8 +11,12 @@ const UserProfile = (props) => {
 
   const [isLocationEditMode, setIsLocationEditMode] = useState(false);
   const [editedLocation, setEditedLocation] = useState(props.user.location);
-
+  const [userCollections, setUserCollections] = useState([]);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    getProfileCollections(props.user.id).then((value) => setUserCollections(value));
+  }, []);
 
   const handleImageClick = () => {
     fileInputRef.current.click();
@@ -24,13 +31,28 @@ const UserProfile = (props) => {
 
   const saveProfileChange = async (event) => {
     event.preventDefault();
-    const newImageBody = new FormData();
-    newImageBody.append("profileImg", imageData.profileImg);
-    const profilePic = await getProfileImage(props.user.id, newImageBody);
-    props.setCurrentUser({
-      ...props.user,
-      profileImg: profilePic,
-    });
+    if (imageData.profileImg) {
+      const newImageBody = new FormData();
+      newImageBody.append("profileImg", imageData.profileImg);
+      const profilePic = await getProfileImage(props.user.id, newImageBody);
+      props.setCurrentUser({
+        ...props.user,
+        profileImg: profilePic,
+      });
+    }
+
+    props.setCurrentUser((prevUser) => ({
+      ...prevUser,
+      location: editedLocation,
+    }));
+
+    try {
+      await updateProfileLocation(props.user.id, editedLocation);
+      console.log("Location updated on the backend");
+    } catch (error) {
+      console.error("Error updating location on the backend", error);
+    }
+    setEditedLocation(props.user.location);
   };
 
   const handleLocationDoubleClick = () => {
@@ -43,8 +65,24 @@ const UserProfile = (props) => {
 
   const handleLocationBlur = () => {
     setIsLocationEditMode(false);
-    // Perform any additional logic you need with the edited location
   };
+
+  const handleCollectionDelete = (deletedCollectionId) => {
+    setUserCollections((prevCollections) =>
+      prevCollections.filter((collection) => collection.id !== deletedCollectionId)
+    );
+  };
+
+  const collectionsListItems = userCollections.map((collectionItem) => {
+    return (
+      <CollectionTile
+        key={collectionItem.id}
+        collection={collectionItem}
+        currentUser={props.user}
+        onDelete={handleCollectionDelete}
+      ></CollectionTile>
+    );
+  });
 
   return (
     <div className="container mx-auto my-60">
@@ -54,7 +92,7 @@ const UserProfile = (props) => {
             <div className="flex justify-center" onClick={handleImageClick}>
               <img
                 src={props.user.profileImg}
-                className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
+                className="profile-image rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
               />
               <input
                 type="file"
@@ -93,13 +131,6 @@ const UserProfile = (props) => {
               </div>
 
               <div className="flex justify-center my-5 px-6">
-                {/* <a
-                href="#"
-                className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-20 py-3 ml-1 mr-1 bg-gray-900 hover:bg-black hover:text-white"
-              >
-                Message
-              </a> */}
-
                 <button
                   type="button"
                   className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-20 py-3 ml-1 mr-1 bg-gray-900 hover:bg-black hover:text-white"
@@ -108,37 +139,11 @@ const UserProfile = (props) => {
                   Save Profile Change
                 </button>
               </div>
-
-              {/* <div className="flex justify-between items-center my-5 px-6">
-              <a
-                href=""
-                className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
-              >
-                Facebook
-              </a>
-              <a
-                href=""
-                className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
-              >
-                Twitter
-              </a>
-              <a
-                href=""
-                className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
-              >
-                Instagram
-              </a>
-              <a
-                href=""
-                className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
-              >
-                Email
-              </a>
-            </div> */}
             </div>
           </div>
         </div>
       </form>
+      <div className="collections-grid">{collectionsListItems}</div>
     </div>
   );
 };

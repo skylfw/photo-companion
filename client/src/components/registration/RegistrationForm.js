@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import FormError from "../layout/FormError";
 import ErrorList from "../layout/ErrorList";
 import translateServerErrors from "../../services/translateServerErrors";
@@ -124,8 +124,48 @@ const RegistrationForm = () => {
     location.href = "/";
   }
 
+  const autoCompleteRef = useRef();
+  const inputRef = useRef();
+
+  useEffect(() => {
+    const loadScript = () => {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCGUog1v9cL4FNjbWubw07IO3SS2ESg-qE&libraries=places&callback=initMap`;
+      document.body.appendChild(script);
+      script.onload = () => initMap();
+    };
+
+    const initMap = () => {
+      const options = {
+        types: ["(cities)"],
+      };
+
+      autoCompleteRef.current = new window.google.maps.places.Autocomplete(
+        inputRef.current,
+        options
+      );
+
+      autoCompleteRef.current.addListener("place_changed", () => {
+        const selectedPlace = autoCompleteRef.current.getPlace();
+        if (selectedPlace && selectedPlace.formatted_address) {
+          setUserPayload({
+            ...userPayload,
+            location: selectedPlace.formatted_address,
+          });
+        }
+      });
+    };
+
+    loadScript();
+  }, []);
+
   return (
     <div className="form-container">
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGUog1v9cL4FNjbWubw07IO3SS2ESg-qE&libraries=places&callback=initMap"
+        async
+      ></script>
       <div className="form-item-container">
         <div className="form-card">
           <h1 className="form-title">Sign Up</h1>
@@ -161,6 +201,7 @@ const RegistrationForm = () => {
                 value={userPayload.location}
                 onChange={onInputChange}
                 placeholder="Location"
+                ref={inputRef}
               />
               <FormError error={errors.location} />
             </div>

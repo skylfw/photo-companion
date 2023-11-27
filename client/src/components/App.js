@@ -53,7 +53,6 @@ const App = (props) => {
             <h1 className="landing-page-text">
               Welcome to Photo Companion! Let us help you locate local photographers.
             </h1>
-            <button className="submit-button landing-button">Sign Up</button>
           </div>
         </Route>
         <AuthenticatedRoute

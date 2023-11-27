@@ -35,7 +35,7 @@ const CollectionTile = ({ collection, onDelete, currentUser }) => {
           </div>
         </div>
       </Link>
-      {deleteButton}
+      <div>{deleteButton}</div>
     </div>
   );
 };

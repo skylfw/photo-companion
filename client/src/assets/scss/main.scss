@@ -127,13 +127,14 @@ body {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #718096;
+  z-index: 1000;
   // transition: background-color 0.7s ease-out;
 }
 
 .navbar-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   padding: 1rem;
 }
 
@@ -145,10 +146,14 @@ body {
 
 .navbar-left-items {
   display: flex;
+  flex-direction: row;
+  align-items: baseline;
 }
 
 .navbar-link {
-  font-size: 2rem;
+  // font-size: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
   margin-left: 1rem;
   color: black;
 }
@@ -281,7 +286,7 @@ body {
 }
 
 .search-bar-container {
-  margin-bottom: 20px; /* Adjust the margin as needed */
+  margin-bottom: 20px;
 }
 
 .search-form {
@@ -290,7 +295,7 @@ body {
 }
 
 .profile-card {
-  flex: 0 0 30%; /* Adjust the width of each card as needed */
+  flex: 0 0 30%;
   margin-bottom: 20px; /* Add margin between cards */
 }
 
@@ -303,5 +308,52 @@ body {
   width: 1000px;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; /* Allows items to wrap to the next row */
+  flex-wrap: wrap;
+}
+
+.search-bar-container button {
+  background-color: #c98c4f;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  margin-left: 0.5rem;
+  color: white;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.collection-photo {
+  height: auto;
+  max-width: 20rem;
+  border-radius: 0.5rem;
+}
+
+.collection-title {
+  font-size: 3rem;
+  color: #718096;
+  text-align: center;
+}
+
+.collection-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-left: 2.5rem;
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .collection-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.profile-image {
+  background-color: grey;
+  object-fit: cover;
+}
+
+.search-bar {
+  width: 300px;
 }
