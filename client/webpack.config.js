@@ -45,6 +45,18 @@ module.exports = {
         loader: "file-loader",
       },
       {
+        test: /\.ttf$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+            },
+          },
+        ],
+      },
+      {
         test: /\.module\.s(a|c)ss$/,
         use: [
           isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,

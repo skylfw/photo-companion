@@ -47,15 +47,21 @@ const UserProfile = (props) => {
   };
 
   return (
-    <div className="container mx-auto my-60">
+    <div className="user-profile-page-container">
       <form>
         <div>
+<<<<<<< Updated upstream
           <div className="bg-white relative shadow rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">
             <div className="flex justify-center" onClick={handleImageClick}>
               <img
                 src={props.user.profileImg}
                 className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
               />
+=======
+          <div className="user-profile-container">
+            <div className="profile-image-container" onClick={handleImageClick}>
+              <img src={props.user.profileImg} className="profile-image" />
+>>>>>>> Stashed changes
               <input
                 type="file"
                 ref={fileInputRef}
@@ -63,10 +69,8 @@ const UserProfile = (props) => {
                 onChange={handleFileChange}
               />
             </div>
-            <div className="mt-16">
-              <h1 className="font-bold text-center text-3xl text-gray-900">
-                {props.user.username}
-              </h1>
+            <div>
+              <h1 className="profile-username">{props.user.username}</h1>
               <div className="text-center">
                 {isLocationEditMode ? (
                   <input
@@ -74,17 +78,15 @@ const UserProfile = (props) => {
                     value={editedLocation}
                     onChange={handleLocationChange}
                     onBlur={handleLocationBlur}
-                    className="text-center text-sm mt-1 text-gray-400 font-medium focus:outline-none"
+                    className="profile-detail-text"
                   />
                 ) : (
-                  <p
-                    className="text-center text-sm mt-1 text-gray-400 font-medium"
-                    onDoubleClick={handleLocationDoubleClick}
-                  >
+                  <p className="profile-detail-text" onDoubleClick={handleLocationDoubleClick}>
                     {props.user.location}
                   </p>
                 )}
               </div>
+<<<<<<< Updated upstream
               <div className="text-center text-sm mt-1 text-gray-400 font-medium">
                 {props.user.description}
               </div>
@@ -100,9 +102,14 @@ const UserProfile = (props) => {
                 Message
               </a> */}
 
+=======
+              <div className="profile-detail-text">{props.user.description}</div>
+              <div className="profile-detail-text">{props.user.expertise}</div>
+              <div className="profile-button-container">
+>>>>>>> Stashed changes
                 <button
                   type="button"
-                  className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-20 py-3 ml-1 mr-1 bg-gray-900 hover:bg-black hover:text-white"
+                  className="submit-button profile-submit-button"
                   onClick={saveProfileChange}
                 >
                   Save Profile Change
@@ -139,6 +146,12 @@ const UserProfile = (props) => {
           </div>
         </div>
       </form>
+<<<<<<< Updated upstream
+=======
+      <div class="profile-collections-grid">
+        <div className="collections-grid">{collectionsListItems}</div>
+      </div>
+>>>>>>> Stashed changes
     </div>
   );
 };

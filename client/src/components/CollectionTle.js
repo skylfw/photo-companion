@@ -33,9 +33,13 @@ const CollectionTile = ({ collection, onDelete, currentUser }) => {
             <p className="collection-card-text">{collection.username}</p>
             <p className="collection-card-text">{collection.description}</p>
           </div>
+          <div className="delete-button">{deleteButton}</div>
         </div>
       </Link>
+<<<<<<< Updated upstream
       {deleteButton}
+=======
+>>>>>>> Stashed changes
     </div>
   );
 };
