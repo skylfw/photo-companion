@@ -7,7 +7,6 @@ const getCollections = async (userId) => {
       throw error;
     }
     const body = await response.json();
-    console.log(body);
     setUserCollections(body.collections);
     return body;
   } catch (err) {

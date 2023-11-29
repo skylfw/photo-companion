@@ -48,7 +48,6 @@ const UserProfile = (props) => {
 
     try {
       await updateProfileLocation(props.user.id, editedLocation);
-      console.log("Location updated on the backend");
     } catch (error) {
       console.error("Error updating location on the backend", error);
     }

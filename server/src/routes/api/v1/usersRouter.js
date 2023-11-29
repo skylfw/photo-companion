@@ -9,7 +9,6 @@ usersRouter.get("/", async (req, res) => {
     const users = await User.query();
     return res.status(200).json({ users });
   } catch (error) {
-    console.log(error);
     return res.status(422).json({ errors: error });
   }
 });
@@ -29,7 +28,6 @@ usersRouter.get("/locations", async (req, res) => {
     return res.status(201).json({ locations: capitalizedLocations });
   } catch (error) {
     console.error("Error fetching location options:", error);
-    console.log(error.data);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -51,7 +49,6 @@ usersRouter.get("/:id/collections", async (req, res) => {
     const collections = await Collection.query().where("userId", userId);
     return res.json({ collections });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ errors: error });
   }
 });
@@ -69,23 +66,19 @@ usersRouter.post("/", async (req, res) => {
       return res.status(201).json({ user: persistedUser });
     });
   } catch (error) {
-    console.log(error);
     return res.status(422).json({ errors: error });
   }
 });
 
 usersRouter.get("/search/location", async (req, res) => {
   const { location } = req.query;
-  console.log("Location:", location);
   if (!location) {
     return res.status(400).json({ errors: "Location parameter is required for search." });
   }
   try {
     const users = await User.query().where("location", "ilike", `%${location}%`);
-    console.log(users);
     return res.status(200).json({ users });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ errors: error });
   }
 });

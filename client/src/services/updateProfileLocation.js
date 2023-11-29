@@ -13,7 +13,6 @@ const updateProfileLocation = async (userId, newLocation) => {
     }
 
     const updatedUserData = await response.json();
-    console.log(updatedUserData);
     return updatedUserData;
   } catch (error) {
     console.error("Error updating location:", error);
