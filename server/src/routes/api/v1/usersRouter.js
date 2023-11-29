@@ -27,15 +27,37 @@ usersRouter.get("/:id", async (req, res) => {
 });
 
 usersRouter.post("/", async (req, res) => {
-  const { email, username, password, passwordConfirmation } = req.body;
+  const { email, username, password, passwordConfirmation, location } = req.body;
   try {
-    const persistedUser = await User.query().insertAndFetch({ email, username, password });
+    const persistedUser = await User.query().insertAndFetch({
+      email,
+      username,
+      password,
+      location,
+    });
     return req.login(persistedUser, () => {
       return res.status(201).json({ user: persistedUser });
     });
   } catch (error) {
     console.log(error);
     return res.status(422).json({ errors: error });
+  }
+});
+
+usersRouter.get("/search/location", async (req, res) => {
+  console.log("Received request for /api/users/search/location");
+  const { location } = req.query;
+  console.log("Location:", location);
+  if (!location) {
+    return res.status(400).json({ errors: "Location parameter is required for search." });
+  }
+  try {
+    const users = await User.query().where("location", "ilike", `%${location}%`);
+    console.log(users);
+    return res.status(200).json({ users });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ errors: error });
   }
 });
 
