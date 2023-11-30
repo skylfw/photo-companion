@@ -13,7 +13,6 @@ collectionsRouter.get("/", async (req, res) => {
     const serializedCollections = await CollectionSerializer.getSummary(collections);
     return res.status(200).json({ collections: serializedCollections });
   } catch (error) {
-    console.log(error);
     return res.status(422).json({ errors: error });
   }
 });
@@ -76,7 +75,6 @@ collectionsRouter.delete("/:id", async (req, res) => {
       await Photo.query().delete().where("collectionId", collectionId);
 
       const deletedRows = await Collection.query().deleteById(collectionId);
-      console.log("Deleted rows:", deletedRows);
 
       if (deletedRows > 0) {
         return res.status(200).json({ success: true });

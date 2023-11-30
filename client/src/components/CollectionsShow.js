@@ -20,16 +20,15 @@ const CollectionShow = (props) => {
   const list = collection.photos.map((img) => {
     return (
       <div key={img.id}>
-        <img className="gallery-img" src={`${img.imageUrl}`}></img>
+        <img className="collection-photo" src={`${img.imageUrl}`}></img>
       </div>
     );
   });
 
   return (
     <div className="page-container">
-      <h1>{collection.title}</h1>
-      <div>{collection.description}</div>
-      <div>{list}</div>
+      <h1 className="collection-title">{collection.title}</h1>
+      <div className="collection-list">{list}</div>
     </div>
   );
 };

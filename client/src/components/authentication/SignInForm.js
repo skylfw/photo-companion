@@ -71,7 +71,7 @@ const SignInForm = () => {
   }
 
   return (
-    <div className="page-container form-container">
+    <div className="form-container">
       <div className="form-item-container">
         <div className="form-card">
           <h1 className="form-title">Sign In</h1>
