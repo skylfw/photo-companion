@@ -76,28 +76,26 @@ const SignInForm = () => {
         <div className="form-card">
           <h1 className="form-title">Sign In</h1>
           <form>
-            <div className="mb-4">
-              <input
-                type="text"
-                className="input-field"
-                name="email"
-                value={userPayload.email}
-                onChange={onInputChange}
-                placeholder="Email"
-              />
-              <FormError error={errors.email} />
-            </div>
-            <div className="mb-4">
-              <input
-                type="password"
-                className="input-field"
-                name="password"
-                value={userPayload.password}
-                onChange={onInputChange}
-                placeholder="Password"
-              />
-              <FormError error={errors.password} />
-            </div>
+            <input
+              type="text"
+              className="input-field"
+              name="email"
+              value={userPayload.email}
+              onChange={onInputChange}
+              placeholder="Email"
+            />
+            <FormError error={errors.email} />
+
+            <input
+              type="password"
+              className="input-field"
+              name="password"
+              value={userPayload.password}
+              onChange={onInputChange}
+              placeholder="Password"
+            />
+            <FormError error={errors.password} />
+
             <button onClick={onSubmit} type="submit" className="submit-button">
               Sign In
             </button>

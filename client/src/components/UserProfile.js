@@ -84,15 +84,12 @@ const UserProfile = (props) => {
   });
 
   return (
-    <div className="container mx-auto my-60">
+    <div className="users-profile-page-container">
       <form>
         <div>
-          <div className="bg-white relative shadow rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">
-            <div className="flex justify-center" onClick={handleImageClick}>
-              <img
-                src={props.user.profileImg}
-                className="profile-image rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
-              />
+          <div className="user-profile-container">
+            <div className="profile-image-container" onClick={handleImageClick}>
+              <img src={props.user.profileImg} className="profile-image" />
               <input
                 type="file"
                 ref={fileInputRef}
@@ -100,41 +97,28 @@ const UserProfile = (props) => {
                 onChange={handleFileChange}
               />
             </div>
-            <div className="mt-16">
-              <h1 className="font-bold text-center text-3xl text-gray-900">
-                {props.user.username}
-              </h1>
-              <div className="text-center">
+            <div className="profile-detail-container ">
+              <h1 className="profile-username-text">{props.user.username}</h1>
+              <div className="center-text">
                 {isLocationEditMode ? (
                   <input
                     type="text"
                     value={editedLocation}
                     onChange={handleLocationChange}
                     onBlur={handleLocationBlur}
-                    className="text-center text-sm mt-1 text-gray-400 font-medium focus:outline-none"
+                    className="profile-location-text"
                   />
                 ) : (
-                  <p
-                    className="text-center text-sm mt-1 text-gray-400 font-medium"
-                    onDoubleClick={handleLocationDoubleClick}
-                  >
+                  <p className="profile-detail-text" onDoubleClick={handleLocationDoubleClick}>
                     {props.user.location}
                   </p>
                 )}
               </div>
-              <div className="text-center text-sm mt-1 text-gray-400 font-medium">
-                {props.user.description}
-              </div>
-              <div className="text-center text-sm text-gray-400 font-medium">
-                {props.user.expertise}
-              </div>
+              <div className="profile-detail-text">{props.user.description}</div>
+              <div className="profile-detail-text">{props.user.expertise}</div>
 
-              <div className="flex justify-center my-5 px-6">
-                <button
-                  type="button"
-                  className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-20 py-3 ml-1 mr-1 bg-gray-900 hover:bg-black hover:text-white"
-                  onClick={saveProfileChange}
-                >
+              <div className="profile-button-container">
+                <button type="button" className="save-profile-button" onClick={saveProfileChange}>
                   Save Profile Change
                 </button>
               </div>
