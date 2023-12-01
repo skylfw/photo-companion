@@ -13,7 +13,7 @@
 //   tab-size: 4;
 // }
 
-@import "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
+// @import "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
 
 #logo {
   height: 30px;
@@ -25,10 +25,16 @@
 body {
   width: 100%;
   height: 100%;
+  font-family: sans-serif;
   // padding-top: 5.5rem;
   // overflow: hidden;
   margin: 0;
   background-color: #fefae0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .page-container {
@@ -176,9 +182,10 @@ body {
 .input-field {
   display: block;
   border: 1px solid #cbd5e0;
-  width: 100%;
+  width: 92%;
   padding: 0.75rem;
   border-radius: 0.375rem;
+  margin-bottom: 1rem;
 }
 
 .form-title {
@@ -632,7 +639,7 @@ body {
   outline-offset: 2px;
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   display: block;
-  width: 100%;
+  width: 94%;
   padding: 0.625rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -645,4 +652,7 @@ body {
 
 .collection-form-upload {
   margin-bottom: 1rem;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
