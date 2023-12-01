@@ -597,3 +597,52 @@ body {
 .message-button:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+/* Add collection form page */
+
+.collection-form-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.collection-form-container {
+  background-color: #ffffff;
+  padding: 1.25rem;
+  max-width: 32rem;
+  border-radius: 0.375rem;
+}
+
+.collection-form-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  padding-top: 1.25rem;
+  padding-bottom: 0.75rem;
+}
+
+.collection-form-input {
+  background-color: #f9fafb;
+  border: 1px solid #d2d6dc;
+  color: #1a202c;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: block;
+  width: 100%;
+  padding: 0.625rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.collection-form-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.collection-form-upload {
+  margin-bottom: 1rem;
+}
