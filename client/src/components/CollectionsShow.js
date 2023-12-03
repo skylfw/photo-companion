@@ -19,8 +19,8 @@ const CollectionShow = (props) => {
 
   const list = collection.photos.map((img) => {
     return (
-      <div key={img.id}>
-        <img className="collection-photo" src={`${img.imageUrl}`}></img>
+      <div key={img.id} className="collection-photo">
+        <img src={`${img.imageUrl}`}></img>
       </div>
     );
   });
