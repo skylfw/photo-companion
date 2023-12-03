@@ -20,7 +20,7 @@
   "private": true,
   "type": "module",
   "version": "0.0.1",
-  "name": "light-spar-server",
+  "name": "photo-companion-server",
   "engines": {
     "node": "^16.18"
   },
