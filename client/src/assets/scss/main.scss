@@ -324,9 +324,13 @@ a {
 }
 
 .collection-photo {
+  display: flex;
   height: auto;
-  max-width: 20rem;
+  max-width: 80%;
   border-radius: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5rem;
 }
 
 .collection-title {
@@ -336,11 +340,9 @@ a {
 }
 
 .collection-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin-left: 2.5rem;
-  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* user profile page */
