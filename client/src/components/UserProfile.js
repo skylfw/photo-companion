@@ -74,12 +74,14 @@ const UserProfile = (props) => {
 
   const collectionsListItems = userCollections.map((collectionItem) => {
     return (
-      <CollectionTile
-        key={collectionItem.id}
-        collection={collectionItem}
-        currentUser={props.user}
-        onDelete={handleCollectionDelete}
-      ></CollectionTile>
+      <div className="collection-list-item">
+        <CollectionTile
+          key={collectionItem.id}
+          collection={collectionItem}
+          currentUser={props.user}
+          onDelete={handleCollectionDelete}
+        ></CollectionTile>
+      </div>
     );
   });
 
