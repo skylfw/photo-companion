@@ -173,9 +173,9 @@ const UsersList = () => {
         </div>
         <div>
           {searchUsers.length === 0 ? (
-            <div className="users-list-container">{usersProfileList}</div>
+            <div className="collections-grid">{usersProfileList}</div>
           ) : (
-            <div className="users-list-container">{searchedUsersList}</div>
+            <div className="collections-grid">{searchedUsersList}</div>
           )}
         </div>
       </div>

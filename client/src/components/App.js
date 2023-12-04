@@ -38,11 +38,11 @@ const App = (props) => {
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/">
           <div
-            style={{
-              backgroundColor: "black",
-              height: "100vh",
-              overflow: "hidden",
-            }}
+          // style={{
+          //   backgroundColor: "black",
+          //   height: "100vh",
+          //   overflow: "hidden",
+          // }}
           >
             <img
               className="landing-page-img"
